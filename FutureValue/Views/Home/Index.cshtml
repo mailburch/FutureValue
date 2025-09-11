@@ -1,0 +1,52 @@
+﻿@model FutureValue.Models.FutureValueModel
+@{
+    ViewBag.Title = "Future Value Calculator";
+}
+
+<div class="row">
+    <h1 class="col-12">Future Value Calculator</h1>
+</div>
+
+<div class="row mt-3">
+    <form asp-action="Index" method="post" class="col-6">
+        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label asp-for="MonthlyInvestment" class="form-label"></label>
+            <input asp-for="MonthlyInvestment" class="form-control" />
+            <span asp-validation-for="MonthlyInvestment" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="YearlyInterestRate" class="form-label"></label>
+            <input asp-for="YearlyInterestRate" class="form-control" />
+            <span asp-validation-for="YearlyInterestRate" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Years" class="form-label"></label>
+            <input asp-for="Years" class="form-control" />
+            <span asp-validation-for="Years" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Calculate</button>
+            <button type="submit" formaction="@Url.Action("Index", "Home")" formmethod="get" class="btn btn-secondary">Clear</button>
+        </div>
+
+        @if (ViewBag.FV is decimal fv)
+        {
+            <div class="alert alert-success mt-3">
+                Future Value: @fv.ToString("C2")
+            </div>
+        }
+    </form>
+
+    <div class="col-4 offset-1">
+        <img src="~/images/money.jpg" class="img-fluid" alt="Money" />
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
