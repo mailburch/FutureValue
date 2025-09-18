@@ -6,6 +6,8 @@ namespace FutureValue.Controllers
     public class HomeController : Controller
     {
         [HttpGet]
+        public IActionResult About() => View();
+
         public IActionResult Index()
         {
             // Prefill with friendly defaults so the form isn’t blank
